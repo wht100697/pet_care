@@ -1,0 +1,14 @@
+{
+  "name": "pet-care-next",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1 -p 4173",
+    "build": "next build",
+    "start": "next start -H 127.0.0.1 -p 4173"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
