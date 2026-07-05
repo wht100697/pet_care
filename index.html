@@ -286,8 +286,7 @@
     }
 
     .service-grid,
-    .price-grid,
-    .review-grid {
+    .price-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
@@ -750,8 +749,32 @@
       font-weight: 750;
     }
 
+    .review-carousel {
+      overflow: hidden;
+    }
+
+    .review-viewport {
+      overflow: hidden;
+    }
+
+    .review-track {
+      display: flex;
+      transition: transform 0.55s ease;
+      will-change: transform;
+    }
+
+    .review-slide {
+      display: grid;
+      flex: 0 0 100%;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
     .review-card {
+      display: flex;
       min-height: 238px;
+      flex-direction: column;
+      justify-content: space-between;
       padding: 24px;
     }
 
@@ -779,12 +802,38 @@
       background: var(--blue);
     }
 
-    .review-card:nth-child(2) .avatar {
+    .review-card:nth-child(3n + 2) .avatar {
       background: var(--coral);
     }
 
-    .review-card:nth-child(3) .avatar {
+    .review-card:nth-child(3n) .avatar {
       background: var(--sage);
+    }
+
+    .review-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .review-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .review-controls .carousel-btn {
+      color: var(--ink);
+      border-color: var(--line);
+      background: white;
+      box-shadow: 0 10px 28px rgba(20, 49, 48, 0.1);
+      backdrop-filter: none;
+    }
+
+    .review-controls .carousel-btn:hover,
+    .review-controls .carousel-btn:focus-visible {
+      background: var(--soft);
     }
 
     .contact {
@@ -859,7 +908,7 @@
 
       .service-grid,
       .price-grid,
-      .review-grid,
+      .review-slide,
       .contact-grid {
         grid-template-columns: 1fr;
       }
@@ -1246,22 +1295,59 @@
           <h2>主人们的真实反馈</h2>
           <p>好洗护的标准很简单：宠物愿意再来，主人放心托付。</p>
         </div>
-        <div class="review-grid">
-          <article class="review-card">
-            <div class="stars" aria-label="五星评价">★★★★★</div>
-            <p>我家狗狗以前洗澡会抖，这次洗完状态很放松，毛也蓬得很自然。</p>
-            <div class="reviewer"><span class="avatar">周</span> 周先生 · 比熊主人</div>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="五星评价">★★★★★</div>
-            <p>猫咪第一次到店没有应激，洗护师会边做边反馈，细节很让人安心。</p>
-            <div class="reviewer"><span class="avatar">陈</span> 陈女士 · 英短主人</div>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="五星评价">★★★★★</div>
-            <p>报价透明，打结也提前说明了处理方式，修完比我想象中更清爽。</p>
-            <div class="reviewer"><span class="avatar">林</span> 林女士 · 贵宾主人</div>
-          </article>
+        <div class="review-carousel" aria-label="客户评价轮播">
+          <div class="review-viewport">
+            <div class="review-track" id="reviewTrack">
+              <div class="review-slide">
+                <article class="review-card">
+                  <div class="stars" aria-label="五星评价">★★★★★</div>
+                  <p>我家狗狗以前洗澡会抖，这次洗完状态很放松，毛也蓬得很自然。</p>
+                  <div class="reviewer"><span class="avatar">周</span> 周先生 · 比熊主人</div>
+                </article>
+                <article class="review-card">
+                  <div class="stars" aria-label="五星评价">★★★★★</div>
+                  <p>猫咪第一次到店没有应激，洗护师会边做边反馈，细节很让人安心。</p>
+                  <div class="reviewer"><span class="avatar">陈</span> 陈女士 · 英短主人</div>
+                </article>
+                <article class="review-card">
+                  <div class="stars" aria-label="五星评价">★★★★★</div>
+                  <p>报价透明，打结也提前说明了处理方式，修完比我想象中更清爽。</p>
+                  <div class="reviewer"><span class="avatar">林</span> 林女士 · 贵宾主人</div>
+                </article>
+              </div>
+              <div class="review-slide">
+                <article class="review-card">
+                  <div class="stars" aria-label="五星评价">★★★★★</div>
+                  <p>护理师先陪我家胆小的柴柴熟悉环境，吹干也分段休息，回家后完全没有躲起来。</p>
+                  <div class="reviewer"><span class="avatar">吴</span> 吴女士 · 柴犬主人</div>
+                </article>
+                <article class="review-card">
+                  <div class="stars" aria-label="五星评价">★★★★★</div>
+                  <p>老年猫洗护最怕折腾，这里会提前确认身体情况，动作很轻，结束还给了皮肤观察建议。</p>
+                  <div class="reviewer"><span class="avatar">赵</span> 赵先生 · 布偶主人</div>
+                </article>
+                <article class="review-card">
+                  <div class="stars" aria-label="五星评价">★★★★★</div>
+                  <p>预约、到店、接回每一步都很清楚，照片反馈也及时，适合像我这种第一次送洗的新手主人。</p>
+                  <div class="reviewer"><span class="avatar">许</span> 许女士 · 柯基主人</div>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="review-actions">
+            <div class="carousel-dots" aria-label="选择客户评价">
+              <button class="carousel-dot" type="button" data-review-dot="0" aria-label="查看第 1 组评价" aria-current="true"></button>
+              <button class="carousel-dot" type="button" data-review-dot="1" aria-label="查看第 2 组评价" aria-current="false"></button>
+            </div>
+            <div class="review-controls">
+              <button class="carousel-btn" type="button" data-review-prev aria-label="上一组客户评价">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+              </button>
+              <button class="carousel-btn" type="button" data-review-next aria-label="下一组客户评价">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1308,6 +1394,12 @@
     const carouselPrev = document.querySelector("[data-carousel-prev]");
     const carouselNext = document.querySelector("[data-carousel-next]");
     const environmentCarousel = document.querySelector(".environment-carousel");
+    const reviewTrack = document.querySelector("#reviewTrack");
+    const reviewSlides = document.querySelectorAll(".review-slide");
+    const reviewDots = document.querySelectorAll("[data-review-dot]");
+    const reviewPrev = document.querySelector("[data-review-prev]");
+    const reviewNext = document.querySelector("[data-review-next]");
+    const reviewCarousel = document.querySelector(".review-carousel");
 
     const sizeAddons = {
       small: 0,
@@ -1380,8 +1472,53 @@
     environmentCarousel.addEventListener("focusin", () => window.clearInterval(environmentTimer));
     environmentCarousel.addEventListener("focusout", startEnvironmentCarousel);
 
+    let currentReviewSlide = 0;
+    let reviewTimer;
+
+    function showReviewSlide(index) {
+      currentReviewSlide = (index + reviewSlides.length) % reviewSlides.length;
+      reviewTrack.style.transform = `translateX(-${currentReviewSlide * 100}%)`;
+      reviewDots.forEach((dot, dotIndex) => {
+        dot.setAttribute("aria-current", String(dotIndex === currentReviewSlide));
+      });
+    }
+
+    function startReviewCarousel() {
+      reviewTimer = window.setInterval(() => {
+        showReviewSlide(currentReviewSlide + 1);
+      }, 6200);
+    }
+
+    function resetReviewCarousel() {
+      window.clearInterval(reviewTimer);
+      startReviewCarousel();
+    }
+
+    reviewPrev.addEventListener("click", () => {
+      showReviewSlide(currentReviewSlide - 1);
+      resetReviewCarousel();
+    });
+
+    reviewNext.addEventListener("click", () => {
+      showReviewSlide(currentReviewSlide + 1);
+      resetReviewCarousel();
+    });
+
+    reviewDots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        showReviewSlide(Number(dot.dataset.reviewDot));
+        resetReviewCarousel();
+      });
+    });
+
+    reviewCarousel.addEventListener("mouseenter", () => window.clearInterval(reviewTimer));
+    reviewCarousel.addEventListener("mouseleave", startReviewCarousel);
+    reviewCarousel.addEventListener("focusin", () => window.clearInterval(reviewTimer));
+    reviewCarousel.addEventListener("focusout", startReviewCarousel);
+
     updateEstimate();
     startEnvironmentCarousel();
+    startReviewCarousel();
   </script>
 </body>
 </html>

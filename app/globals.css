@@ -279,8 +279,7 @@
     }
 
     .service-grid,
-    .price-grid,
-    .review-grid {
+    .price-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
@@ -743,8 +742,32 @@
       font-weight: 750;
     }
 
+    .review-carousel {
+      overflow: hidden;
+    }
+
+    .review-viewport {
+      overflow: hidden;
+    }
+
+    .review-track {
+      display: flex;
+      transition: transform 0.55s ease;
+      will-change: transform;
+    }
+
+    .review-slide {
+      display: grid;
+      flex: 0 0 100%;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
     .review-card {
+      display: flex;
       min-height: 238px;
+      flex-direction: column;
+      justify-content: space-between;
       padding: 24px;
     }
 
@@ -772,12 +795,38 @@
       background: var(--blue);
     }
 
-    .review-card:nth-child(2) .avatar {
+    .review-card:nth-child(3n + 2) .avatar {
       background: var(--coral);
     }
 
-    .review-card:nth-child(3) .avatar {
+    .review-card:nth-child(3n) .avatar {
       background: var(--sage);
+    }
+
+    .review-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .review-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .review-controls .carousel-btn {
+      color: var(--ink);
+      border-color: var(--line);
+      background: white;
+      box-shadow: 0 10px 28px rgba(20, 49, 48, 0.1);
+      backdrop-filter: none;
+    }
+
+    .review-controls .carousel-btn:hover,
+    .review-controls .carousel-btn:focus-visible {
+      background: var(--soft);
     }
 
     .contact {
@@ -852,7 +901,7 @@
 
       .service-grid,
       .price-grid,
-      .review-grid,
+      .review-slide,
       .contact-grid {
         grid-template-columns: 1fr;
       }
