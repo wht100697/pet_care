@@ -1265,8 +1265,8 @@
               </select>
             </label>
             <div class="form-row">
-              <label>预约日期
-                <input type="date" name="date" required>
+              <label>预约时间
+                <input type="datetime-local" name="date" required>
               </label>
               <label>联系电话
                 <input type="tel" name="phone" placeholder="手机号" required>
@@ -1388,6 +1388,7 @@
     const estimatePrice = document.querySelector("#estimatePrice");
     const bookingForm = document.querySelector("#bookingForm");
     const formMessage = document.querySelector("#formMessage");
+    const bookingDateInput = bookingForm?.querySelector('[name="date"]');
     const environmentTrack = document.querySelector("#environmentTrack");
     const environmentSlides = document.querySelectorAll(".environment-slide");
     const carouselDots = document.querySelectorAll("[data-carousel-dot]");
@@ -1407,6 +1408,22 @@
       large: 90
     };
 
+    function getTomorrowMorningValue() {
+      const tomorrowMorning = new Date();
+      tomorrowMorning.setDate(tomorrowMorning.getDate() + 1);
+      tomorrowMorning.setHours(9, 0, 0, 0);
+
+      const year = tomorrowMorning.getFullYear();
+      const month = String(tomorrowMorning.getMonth() + 1).padStart(2, "0");
+      const day = String(tomorrowMorning.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}T09:00`;
+    }
+
+    function setDefaultBookingDate() {
+      bookingDateInput.value = getTomorrowMorningValue();
+    }
+
     function updateEstimate() {
       const base = Number(packageSelect.value);
       const addon = sizeAddons[petSize.value] || 0;
@@ -1425,6 +1442,7 @@
       const date = data.get("date") || "预约日";
       formMessage.textContent = `${owner}，已收到 ${date} 的预约意向。门店会尽快电话确认具体时段。`;
       bookingForm.reset();
+      setDefaultBookingDate();
       updateEstimate();
     });
 
@@ -1517,6 +1535,7 @@
     reviewCarousel.addEventListener("focusout", startReviewCarousel);
 
     updateEstimate();
+    setDefaultBookingDate();
     startEnvironmentCarousel();
     startReviewCarousel();
   </script>
